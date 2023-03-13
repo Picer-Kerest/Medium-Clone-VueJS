@@ -8,22 +8,27 @@ const {
     REGISTER_SUCCESS,
     LOGIN_START,
     LOGIN_SUCCESS,
-    LOGIN_FAILED
+    LOGIN_FAILED,
+    GET_USER_START,
+    GET_USER_SUCCESS,
+    GET_USER_FAILED
 } = mutations;
 
 const authStore = {
     namespaced: true,
     state: {
         isSubmitting: false,
+        isLoading: false,
         currentUser: null,
         validationErrors: null,
-        isLoggedIn: null
+        isLoggedIn: null,
     },
     getters: {
         isSubmitting: ({ isSubmitting }) => isSubmitting,
         currentUser: ({ currentUser }) => currentUser,
         validationErrors: ({ validationErrors }) => validationErrors,
         isLoggedIn: ({ isLoggedIn }) => isLoggedIn,
+        isAnonymous: ({ isLoggedIn }) => isLoggedIn === false
     },
     mutations: {
         [REGISTER_START](state) {
@@ -52,8 +57,27 @@ const authStore = {
             state.isSubmitting = false;
             state.validationErrors = payload;
         },
+        [GET_USER_START](state) {
+            state.isLoading = true;
+        },
+        [GET_USER_SUCCESS](state, payload) {
+            state.isLoading = false;
+            state.currentUser = payload;
+            state.isLoggedIn = true;
+        },
+        [GET_USER_FAILED](state) {
+            state.isLoading = false;
+            state.isLoggedIn = false;
+            state.currentUser = null;
+        },
     },
     actions: {
+        initUserToken: {
+            handler({ dispatch }) {
+                dispatch('getCurrentUser');
+            },
+            root: true,
+        },
         register({ commit }, credentials) {
             // axios возвращает Promise, поэтому then
             return new Promise((resolve) => {
@@ -80,7 +104,19 @@ const authStore = {
                     commit(LOGIN_FAILED, result.response.data.errors);
                 })
             })
-        }
+        },
+        getCurrentUser({ commit }) {
+            return new Promise((resolve) => {
+                commit(GET_USER_START);
+                authApi.getCurrentUser()
+                    .then(response => {
+                        commit(GET_USER_SUCCESS, response.data.user);
+                        resolve(response.data.user);
+                    }).catch(() => {
+                    commit(GET_USER_FAILED);
+                })
+            })
+        },
     }
 }
 

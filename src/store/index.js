@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 import auth from './modules/auth';
+import feed from './modules/feed'
+import popularTags from './modules/popularTags'
 
 const store = createStore({
   state: {},
@@ -8,8 +10,13 @@ const store = createStore({
   actions: {},
   modules: {
     auth,
+    feed,
+    popularTags
   }
 })
 
 
 export default store;
+
+
+store.dispatch('initUserToken');
