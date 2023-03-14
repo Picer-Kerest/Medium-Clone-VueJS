@@ -5,6 +5,7 @@ function setToken(config) {
     const authorizationToken = token ? `Token ${token}` : ''
     config.headers.Authorization = authorizationToken
     // Добавляем токен в Headers
+
     return config
 }
 

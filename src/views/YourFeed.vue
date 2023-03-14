@@ -4,8 +4,8 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-          <FeedToggler />
-          <Feed :url="apiUrl" />
+          <FeedToggler/>
+          <Feed :url="apiUrl"/>
         </div>
         <div class="col-md-3">
           <PopularTags/>
@@ -22,7 +22,7 @@ import Banner from "@/components/Banner";
 import FeedToggler from "@/components/FeedToggler";
 
 export default {
-  name: "GlobalFeed",
+  name: "YourFeed",
   components: {
     Feed,
     PopularTags,
@@ -30,7 +30,7 @@ export default {
     FeedToggler
   },
   data: () => ({
-    apiUrl: '/articles',
+    apiUrl: '/articles/feed',
   }),
 }
 </script>

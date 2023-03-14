@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading..</div>
-    <div v-if="error">Something error</div>
+    <Loading v-if="isLoading"/>
+    <ErrorMessage v-if="error"/>
     <div v-if="feedData">
       <div class="article-preview" v-for="(article, index) in feedData.articles" :key="index">
         <!--      v-for="()" значение ключ индекс -->
@@ -22,8 +22,8 @@
             ADD TO FAVORITES
           </div>
         </div>
-<!--        <router-link :to="{ name: 'article', params: { slug: article.slug } }" class="preview-link">-->
-        <router-link :to="{ name: 'home' }" class="preview-link">
+        <router-link :to="{ name: 'article', params: { slug: article.slug } }" class="preview-link">
+<!--        <router-link :to="{ name: 'home' }" class="preview-link">-->
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more..</span>
@@ -40,11 +40,15 @@ import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 import Pagination from "@/components/Pagination";
 import queryString  from 'query-string'
+import Loading from "@/components/Loading";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default {
   name: "Feed",
   components: {
-    Pagination
+    Pagination,
+    Loading,
+    ErrorMessage
   },
   data: () => ({
     limit: 10,
@@ -91,7 +95,7 @@ export default {
       this.getFeed({
         apiUrl: urlWithParams
       })
-    }
+    },
   }
 }
 </script>
