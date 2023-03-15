@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loading v-if="isLoading"/>
-    <ErrorMessage v-if="error"/>
+    <ErrorMessage v-if="error" :message="error"/>
     <div v-if="feedData">
       <div class="article-preview" v-for="(article, index) in feedData.articles" :key="index">
         <!--      v-for="()" значение ключ индекс -->
@@ -27,7 +27,7 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more..</span>
-          TAG LIST
+          <TagList :tags="article.tagList"/>
         </router-link>
       </div>
       <Pagination :total="feedData.articlesCount" :limit="limit" :currentPage="currentPage" :url="dataUrl"/>
@@ -36,19 +36,20 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
-import Pagination from "@/components/Pagination";
+import {mapActions, mapGetters} from "vuex";
 import queryString  from 'query-string'
+import Pagination from "@/components/Pagination";
 import Loading from "@/components/Loading";
 import ErrorMessage from "@/components/ErrorMessage";
+import TagList from "@/components/TagList";
 
 export default {
   name: "Feed",
   components: {
     Pagination,
     Loading,
-    ErrorMessage
+    ErrorMessage,
+    TagList
   },
   data: () => ({
     limit: 10,
@@ -73,6 +74,10 @@ export default {
   },
   watch: {
     currentPage: 'fetchPage',
+    // '$route.params.slug': 'routeHandler',
+    url() {
+      this.fetchPage()
+    }
   },
   mounted() {
     this.fetchPage()
@@ -81,6 +86,27 @@ export default {
   },
   methods: {
     ...mapActions('feed', ['getFeed', ]),
+    // routeHandler() {
+    //   this.fetchPage()
+    // },
+    // getUrl() {
+    //   // parsedUrl: /articles, query {}
+    //   // stringifyParams: limit=10&offset=0 + query
+    //   // urlWithParams: /articles?limit=10&offset=0
+    //   const parsedUrl = queryString.parseUrl(this.url)
+    //   const stringifyParams = queryString.stringify({
+    //     limit: this.limit,
+    //     offset: this.offset,
+    //     ...parsedUrl.query
+    //   })
+    //   const urlWithParams = `${parsedUrl.url}?${stringifyParams}`
+    //   return urlWithParams
+    // },
+    // fetchPage() {
+    //   this.getFeed({
+    //     apiUrl: this.getUrl()
+    //   })
+    // },
     fetchPage() {
       // parsedUrl: /articles, query {}
       // stringifyParams: limit=10&offset=0 + query
@@ -95,7 +121,7 @@ export default {
       this.getFeed({
         apiUrl: urlWithParams
       })
-    },
+    }
   }
 }
 </script>

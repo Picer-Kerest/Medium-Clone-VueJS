@@ -36,7 +36,7 @@ export default {
     apiUrl() {
       return `/articles?tag=${this.tagName}`
     }
-  }
+  },
 }
 </script>
 

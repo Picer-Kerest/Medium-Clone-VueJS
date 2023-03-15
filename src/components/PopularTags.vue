@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loading v-if="isLoading"/>
-    <ErrorMessage v-if="error"/>
+    <ErrorMessage v-if="error" :message="error"/>
     <div class="sidebar" v-if="tags">
       <p>Popular Tags</p>
       <div class="tag-list">
@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Loading from "@/components/Loading";
 import ErrorMessage from "@/components/ErrorMessage";
 

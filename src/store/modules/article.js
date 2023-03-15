@@ -4,7 +4,10 @@ import articleApi from "@/api/article"
 const {
     GET_ARTICLE_START,
     GET_ARTICLE_SUCCESS,
-    GET_ARTICLE_FAILED
+    GET_ARTICLE_FAILED,
+    DELETE_ARTICLE_START,
+    DELETE_ARTICLE_SUCCESS,
+    DELETE_ARTICLE_FAILED
 } = mutations;
 
 const articleStore = {
@@ -31,6 +34,9 @@ const articleStore = {
         [GET_ARTICLE_FAILED](state) {
             state.isLoading = false
         },
+        [DELETE_ARTICLE_START]() {},
+        [DELETE_ARTICLE_SUCCESS]() {},
+        [DELETE_ARTICLE_FAILED]() {},
     },
     actions: {
         getArticle({ commit }, { slug }) {
@@ -43,6 +49,19 @@ const articleStore = {
                     })
                     .catch(() => {
                         commit(GET_ARTICLE_FAILED)
+                    })
+            })
+        },
+        deleteArticle({ commit }, { slug }) {
+            return new Promise(resolve => {
+                commit(DELETE_ARTICLE_START)
+                articleApi.deleteArticle(slug)
+                    .then(() => {
+                        commit(DELETE_ARTICLE_SUCCESS)
+                        resolve()
+                    })
+                    .catch(() => {
+                        commit(DELETE_ARTICLE_FAILED)
                     })
             })
         }
