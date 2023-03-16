@@ -1,11 +1,12 @@
-import mutations from "@/store/mutations";
-import addToFavoritesApi from "@/api/addToFavorites";
+import mutations from "@/store/mutations"
+import addToFavoritesApi from "@/api/addToFavorites"
+
 
 const {
     ADD_TO_FAVORITE_START,
     ADD_TO_FAVORITE_SUCCESS,
     ADD_TO_FAVORITE_FAILED
-} = mutations;
+} = mutations
 
 const favoritesStore = {
     namespaced: true,
@@ -34,4 +35,4 @@ const favoritesStore = {
     }
 }
 
-export default favoritesStore;
+export default favoritesStore

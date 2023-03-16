@@ -1,6 +1,7 @@
-import mutations from "@/store/mutations";
-import authApi from "@/api/auth";
-import { setItem } from "@/helpers/persistanceStorage";
+import mutations from "@/store/mutations"
+import authApi from "@/api/auth"
+import { setItem } from "@/helpers/persistanceStorage"
+
 
 const {
     REGISTER_START,
@@ -16,7 +17,7 @@ const {
     UPDATE_USER_SUCCESS,
     UPDATE_USER_FAILED,
     LOGOUT
-} = mutations;
+} = mutations
 
 const authStore = {
     namespaced: true,
@@ -36,50 +37,50 @@ const authStore = {
     },
     mutations: {
         [REGISTER_START](state) {
-            state.isSubmitting = true;
-            state.validationErrors = null;
+            state.isSubmitting = true
+            state.validationErrors = null
         },
         [REGISTER_SUCCESS](state, payload) {
-            state.isSubmitting = false;
-            state.currentUser = payload;
-            state.isLoggedIn = true;
+            state.isSubmitting = false
+            state.currentUser = payload
+            state.isLoggedIn = true
         },
         [REGISTER_FAILED](state, payload) {
-            state.isSubmitting = false;
-            state.validationErrors = payload;
+            state.isSubmitting = false
+            state.validationErrors = payload
         },
         [LOGIN_START](state) {
-            state.isSubmitting = true;
-            state.validationErrors = null;
+            state.isSubmitting = true
+            state.validationErrors = null
         },
         [LOGIN_SUCCESS](state, payload) {
-            state.isSubmitting = false;
-            state.currentUser = payload;
-            state.isLoggedIn = true;
+            state.isSubmitting = false
+            state.currentUser = payload
+            state.isLoggedIn = true
         },
         [LOGIN_FAILED](state, payload) {
-            state.isSubmitting = false;
-            state.validationErrors = payload;
+            state.isSubmitting = false
+            state.validationErrors = payload
         },
         [GET_USER_START](state) {
-            state.isLoading = true;
+            state.isLoading = true
         },
         [GET_USER_SUCCESS](state, payload) {
-            state.isLoading = false;
-            state.currentUser = payload;
-            state.isLoggedIn = true;
+            state.isLoading = false
+            state.currentUser = payload
+            state.isLoggedIn = true
         },
         [GET_USER_FAILED](state) {
-            state.isLoading = false;
-            state.isLoggedIn = false;
-            state.currentUser = null;
+            state.isLoading = false
+            state.isLoggedIn = false
+            state.currentUser = null
         },
         [UPDATE_USER_START](state) {
             state.isSubmitting = true
             state.validationErrors = null
         },
         [UPDATE_USER_SUCCESS](state, payload) {
-            state.currentUser = payload;
+            state.currentUser = payload
             state.isSubmitting = false
         },
         [UPDATE_USER_FAILED](state, payload) {
@@ -94,58 +95,58 @@ const authStore = {
     actions: {
         initUserToken: {
             handler({ dispatch }) {
-                dispatch('getCurrentUser');
+                dispatch('getCurrentUser')
             },
             root: true,
         },
         register({ commit }, credentials) {
             // axios возвращает Promise, поэтому then
             return new Promise((resolve) => {
-                commit(REGISTER_START);
+                commit(REGISTER_START)
                 authApi.register(credentials)
                 .then(response => {
-                    commit(REGISTER_SUCCESS, response.data.user);
-                    setItem('accessToken', response.data.user.token);
-                    resolve(response.data.user);
+                    commit(REGISTER_SUCCESS, response.data.user)
+                    setItem('accessToken', response.data.user.token)
+                    resolve(response.data.user)
                 }).catch(result => {
-                    commit(REGISTER_FAILED, result.response.data.errors);
+                    commit(REGISTER_FAILED, result.response.data.errors)
                 })
             })
         },
         login({ commit }, credentials) {
             return new Promise((resolve) => {
-                commit(LOGIN_START);
+                commit(LOGIN_START)
                 authApi.login(credentials)
                     .then(response => {
-                        commit(LOGIN_SUCCESS, response.data.user);
-                        setItem('accessToken', response.data.user.token);
-                        resolve(response.data.user);
+                        commit(LOGIN_SUCCESS, response.data.user)
+                        setItem('accessToken', response.data.user.token)
+                        resolve(response.data.user)
                     }).catch(result => {
-                    commit(LOGIN_FAILED, result.response.data.errors);
+                    commit(LOGIN_FAILED, result.response.data.errors)
                 })
             })
         },
         getCurrentUser({ commit }) {
             return new Promise((resolve) => {
-                commit(GET_USER_START);
+                commit(GET_USER_START)
                 authApi.getCurrentUser()
                     .then(response => {
-                        commit(GET_USER_SUCCESS, response.data.user);
-                        resolve(response.data.user);
+                        commit(GET_USER_SUCCESS, response.data.user)
+                        resolve(response.data.user)
                     }).catch(() => {
-                    commit(GET_USER_FAILED);
+                    commit(GET_USER_FAILED)
                 })
             })
         },
         updateCurrentUser({ commit }, { currentUserInput }) {
             return new Promise((resolve) => {
-                commit(UPDATE_USER_START);
+                commit(UPDATE_USER_START)
                 authApi.updateCurrentUser(currentUserInput)
                     .then(response => {
-                        commit(UPDATE_USER_SUCCESS, response.data.user);
-                        resolve(response.data.user);
+                        commit(UPDATE_USER_SUCCESS, response.data.user)
+                        resolve(response.data.user)
                     }).catch(result => {
-                    commit(UPDATE_USER_FAILED, result.response.data.errors);
+                    commit(UPDATE_USER_FAILED, result.response.data.errors)
                 })
             })
         },
@@ -159,4 +160,4 @@ const authStore = {
     }
 }
 
-export default authStore;
+export default authStore

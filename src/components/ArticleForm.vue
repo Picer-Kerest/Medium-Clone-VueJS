@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import ErrorMessage from "@/components/ErrorMessage";
-import ValidationErrors from "@/components/ValidationErrors";
+import ErrorMessage from "@/components/ErrorMessage"
+import ValidationErrors from "@/components/ValidationErrors"
 
 export default {
   name: "ArticleForm",
@@ -58,17 +58,6 @@ export default {
       required: true
     },
   },
-  // data: () => ({
-  //   title: this.initialVal.title,
-  //   description: this.initialVal.description,
-  //   body: this.initialVal.body,
-  //   tagList: this.initialVal.tagList.join(' ')
-  //   // title: '',
-  //   // description: '',
-  //   // body: '',
-  //   // tagList: ''
-  //
-  // }),
   data() {
     return {
       title: this.initialVal.title,

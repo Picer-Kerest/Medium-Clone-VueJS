@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import ValidationErrors from "@/components/ValidationErrors";
+import {mapActions, mapGetters} from "vuex"
+import ValidationErrors from "@/components/ValidationErrors"
 
 export default {
   name: "Register",
@@ -52,7 +52,7 @@ export default {
             password: this.password
       }).then(() => {
         this.$router.push({name: 'home'})
-      });
+      })
     }
   }
 }

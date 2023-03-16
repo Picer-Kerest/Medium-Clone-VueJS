@@ -1,5 +1,6 @@
 import axios from "@/api/axios"
 
+
 const addToFavorite = slug => {
     return axios.post(`/articles/${slug}/favorite`)
 }

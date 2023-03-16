@@ -8,22 +8,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import ArticleForm from "@/components/ArticleForm";
+import { mapGetters, mapActions } from "vuex"
+import ArticleForm from "@/components/ArticleForm"
 
 export default {
   name: "CreateArticle",
   components: {
     ArticleForm
   },
-  // data: () => ({
-  //   initialValues: {
-  //     title: '',
-  //     description: '',
-  //     body: '',
-  //     tagList: []
-  //   },
-  // }),
   data() {
     return {
       initialValues: {

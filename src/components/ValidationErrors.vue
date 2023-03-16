@@ -19,7 +19,7 @@ export default {
     errorMessages() {
       return Object.keys(this.errors).map(name => {
         const messages = this.errors[name].join(', ')
-        return `${name} ${messages}`;
+        return `${name} ${messages}`
       })
     }
   }

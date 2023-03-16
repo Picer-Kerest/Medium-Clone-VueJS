@@ -1,5 +1,6 @@
-import mutations from "@/store/mutations";
+import mutations from "@/store/mutations"
 import articleApi from "@/api/article"
+
 
 const {
     GET_ARTICLE_START,
@@ -8,7 +9,7 @@ const {
     DELETE_ARTICLE_START,
     DELETE_ARTICLE_SUCCESS,
     DELETE_ARTICLE_FAILED
-} = mutations;
+} = mutations
 
 const articleStore = {
     namespaced: true,
@@ -68,4 +69,4 @@ const articleStore = {
     }
 }
 
-export default articleStore;
+export default articleStore

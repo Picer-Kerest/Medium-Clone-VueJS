@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import Loading from "@/components/Loading";
-import ErrorMessage from "@/components/ErrorMessage";
+import {mapActions, mapGetters} from "vuex"
+import Loading from "@/components/Loading"
+import ErrorMessage from "@/components/ErrorMessage"
 
 export default {
   name: "PopularTags",

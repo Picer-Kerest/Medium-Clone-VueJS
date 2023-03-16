@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import TopBar from "@/components/TopBar";
+import TopBar from "@/components/TopBar"
 
 export default {
   name: 'App',

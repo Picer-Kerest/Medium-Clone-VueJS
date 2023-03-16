@@ -1,5 +1,6 @@
-import mutations from "@/store/mutations";
+import mutations from "@/store/mutations"
 import articleApi from "@/api/article"
+
 
 const {
     UPDATE_ARTICLE_START,
@@ -8,7 +9,7 @@ const {
     GET_ARTICLE_START,
     GET_ARTICLE_SUCCESS,
     GET_ARTICLE_FAILED,
-} = mutations;
+} = mutations
 
 const updateArticleStore = {
     namespaced: true,
@@ -26,14 +27,14 @@ const updateArticleStore = {
     },
     mutations: {
         [UPDATE_ARTICLE_START](state) {
-            state.isSubmitting = true;
+            state.isSubmitting = true
         },
         [UPDATE_ARTICLE_SUCCESS](state) {
-            state.isSubmitting = false;
+            state.isSubmitting = false
         },
         [UPDATE_ARTICLE_FAILED](state, payload) {
-            state.isSubmitting = false;
-            state.validationErrors = payload;
+            state.isSubmitting = false
+            state.validationErrors = payload
         },
         [GET_ARTICLE_START](state) {
             state.isLoading = true
@@ -49,29 +50,29 @@ const updateArticleStore = {
     actions: {
         updateUArticle({ commit }, { slug, articleInput }) {
             return new Promise(resolve => {
-                commit(UPDATE_ARTICLE_START);
+                commit(UPDATE_ARTICLE_START)
                 articleApi.updateArticle(slug, articleInput)
                     .then(response => {
-                        commit(UPDATE_ARTICLE_SUCCESS);
-                        resolve(response.data.article);
+                        commit(UPDATE_ARTICLE_SUCCESS)
+                        resolve(response.data.article)
                     }).catch(result => {
-                    commit(UPDATE_ARTICLE_FAILED, result.response.data.errors);
+                    commit(UPDATE_ARTICLE_FAILED, result.response.data.errors)
                 })
             })
         },
         getUArticle({ commit }, { slug }) {
             return new Promise(resolve => {
-                commit(GET_ARTICLE_START);
+                commit(GET_ARTICLE_START)
                 articleApi.getArticle(slug)
                     .then(response => {
-                        commit(GET_ARTICLE_SUCCESS, response.data.article);
-                        resolve(response.data.article);
+                        commit(GET_ARTICLE_SUCCESS, response.data.article)
+                        resolve(response.data.article)
                     }).catch(() => {
-                    commit(GET_ARTICLE_FAILED);
+                    commit(GET_ARTICLE_FAILED)
                 })
             })
         },
     }
 }
 
-export default updateArticleStore;
+export default updateArticleStore

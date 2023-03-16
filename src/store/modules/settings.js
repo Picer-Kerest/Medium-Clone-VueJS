@@ -1,10 +1,11 @@
-import mutations from "@/store/mutations";
+import mutations from "@/store/mutations"
+
 
 const {
     UPDATE_USER_START,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_FAILED
-} = mutations;
+} = mutations
 
 const settingsStore = {
     namespaced: true,
@@ -31,4 +32,4 @@ const settingsStore = {
     }
 }
 
-export default settingsStore;
+export default settingsStore

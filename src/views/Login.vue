@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import ValidationErrors from "@/components/ValidationErrors";
+import {mapActions, mapGetters} from "vuex"
+import ValidationErrors from "@/components/ValidationErrors"
 
 export default {
   name: "Login",
@@ -46,13 +46,14 @@ export default {
         email: this.email,
         password: this.password
       }).then(() => {
-        // console.log('Success', user);
+        // console.log('Success', user)
         this.$router.push({name: 'home'})
-      });
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+
 </style>

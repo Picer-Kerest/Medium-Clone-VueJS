@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import Loading from "@/components/Loading";
-import ErrorMessage from "@/components/ErrorMessage";
-import TagList from "@/components/TagList";
+import {mapActions, mapGetters} from "vuex"
+import Loading from "@/components/Loading"
+import ErrorMessage from "@/components/ErrorMessage"
+import TagList from "@/components/TagList"
 
 export default {
   name: "Article",

@@ -1,11 +1,12 @@
-import mutations from "@/store/mutations";
-import userProfileApi from "@/api/userProfile";
+import mutations from "@/store/mutations"
+import userProfileApi from "@/api/userProfile"
+
 
 const {
     GET_USER_PROFILE_START,
     GET_USER_PROFILE_SUCCESS,
     GET_USER_PROFILE_FAILED,
-} = mutations;
+} = mutations
 
 const profileStore = {
     namespaced: true,
@@ -48,4 +49,4 @@ const profileStore = {
     }
 }
 
-export default profileStore;
+export default profileStore

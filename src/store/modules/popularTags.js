@@ -1,11 +1,12 @@
-import mutations from "@/store/mutations";
+import mutations from "@/store/mutations"
 import PopularTagsApi from "@/api/PopularTags"
+
 
 const {
     GET_TAGS_START,
     GET_TAGS_SUCCESS,
     GET_TAGS_FAILED
-} = mutations;
+} = mutations
 
 const popularTagsStore = {
     namespaced: true,
@@ -49,4 +50,4 @@ const popularTagsStore = {
     }
 }
 
-export default popularTagsStore;
+export default popularTagsStore

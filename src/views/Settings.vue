@@ -67,8 +67,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import ValidationErrors from "@/components/ValidationErrors";
+import { mapActions, mapGetters } from "vuex"
+import ValidationErrors from "@/components/ValidationErrors"
 
 export default {
   name: "Settings",
@@ -76,10 +76,8 @@ export default {
     ValidationErrors
   },
   computed: {
-    // ...mapGetters('settings', ['isSubmittingSettings', 'validationErrorsSettings', ]),
     ...mapGetters('auth', ['isSubmitting', 'currentUser', 'validationErrors', 'isLoggedIn', 'isAnonymous', ]),
     form() {
-      // if (this.currentUser) {
       return {
         username: this.currentUser.username,
         bio: this.currentUser.bio,
@@ -87,14 +85,6 @@ export default {
         email: this.currentUser.email,
         password: '',
       }
-      // }
-      // return {
-      //   username: '',
-      //   bio: '',
-      //   image: '',
-      //   email: '',
-      //   password: '',
-      // }
     }
   },
   methods: {

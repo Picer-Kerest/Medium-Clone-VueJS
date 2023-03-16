@@ -1,4 +1,5 @@
-import axios from "@/api/axios";
+import axios from "@/api/axios"
+
 
 const getArticle = slug => {
     return axios.get(`/articles/${slug}`)

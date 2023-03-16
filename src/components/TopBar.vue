@@ -18,8 +18,8 @@
             </router-link>
           </li>
           <li class="nav-item">
-<!--            <router-link class="nav-link" :to="{ name: 'home', params: { slug: currentUser.username } }" active-class="active">-->
-            <router-link class="nav-link" :to="{ name: 'home' }" active-class="active">
+            <router-link class="nav-link" :to="{ name: 'userProfile', params: { slug: currentUser.username } }" active-class="active">
+<!--            <router-link class="nav-link" :to="{ name: 'home' }" active-class="active">-->
               <img class="user-pic" :src="currentUser.image" />
               &nbsp; {{ currentUser.username }}
             </router-link>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 
 export default {
   name: "TopBar",
@@ -50,4 +50,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

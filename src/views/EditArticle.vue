@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import ArticleForm from "@/components/ArticleForm";
-import Loading from "@/components/Loading";
+import { mapGetters, mapActions } from "vuex"
+import ArticleForm from "@/components/ArticleForm"
+import Loading from "@/components/Loading"
 
 export default {
   name: "EditArticle",
@@ -22,16 +22,6 @@ export default {
     ArticleForm,
     Loading
   },
-  // data() {
-  //   return {
-  //     initialValues: {
-  //       title: '',
-  //       description: '',
-  //       body: '',
-  //       tagList: []
-  //     }
-  //   }
-  // },
   mounted() {
     this.getUArticle({ slug: this.$route.params.slug })
   },

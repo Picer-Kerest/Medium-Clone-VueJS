@@ -1,11 +1,12 @@
-import mutations from "@/store/mutations";
+import mutations from "@/store/mutations"
 import feedApi from "@/api/feed"
+
 
 const {
     GET_FEED_START,
     GET_FEED_SUCCESS,
     GET_FEED_FAILED
-} = mutations;
+} = mutations
 
 const feedStore = {
     namespaced: true,
@@ -49,4 +50,4 @@ const feedStore = {
     }
 }
 
-export default feedStore;
+export default feedStore

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import Feed from "@/components/Feed";
-import PopularTags from "@/components/PopularTags";
-import Banner from "@/components/Banner";
-import FeedToggler from "@/components/FeedToggler";
+import Feed from "@/components/Feed"
+import PopularTags from "@/components/PopularTags"
+import Banner from "@/components/Banner"
+import FeedToggler from "@/components/FeedToggler"
 
 export default {
   name: "GlobalFeed",
