@@ -6,6 +6,9 @@ import YourFeed from "@/views/YourFeed";
 import TagFeed from "@/views/TagFeed";
 import Article from "@/views/Article";
 import CreateArticle from "@/views/CreateArticle";
+import EditArticle from "@/views/EditArticle";
+import Settings from "@/views/Settings";
+import UserProfile from "@/views/UserProfile";
 
 const routes = [
   {path: '/', name: 'home', component: GlobalFeed},
@@ -15,10 +18,10 @@ const routes = [
   {path: '/tags/:slug', name: 'tag', component: TagFeed},
   {path: '/article/new', name: 'createArticle', component: CreateArticle},
   {path: '/article/:slug', name: 'article', component: Article},
-  {path: '/article/:slug/edit', name: 'editArticle', component: Login},
-  {path: '/settings', name: 'settings', component: Login},
-  {path: '/profiles/:slug', name: 'userProfile', component: Login},
-  {path: '/profiles/:slug/favorites', name: 'userProfileFavorites', component: Login},
+  {path: '/article/:slug/edit', name: 'editArticle', component: EditArticle},
+  {path: '/settings', name: 'settings', component: Settings},
+  {path: '/profiles/:slug', name: 'userProfile', component: UserProfile},
+  {path: '/profiles/:slug/favorites', name: 'userProfileFavorites', component: UserProfile},
 ]
 
 const router = createRouter({

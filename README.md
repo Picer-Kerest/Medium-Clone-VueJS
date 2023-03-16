@@ -15,7 +15,3 @@ npm run serve
 npm run build
 ```
 
-### BAGS
-```
-YOU NEED TO ADD WATCHER TO TAGS
-```

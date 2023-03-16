@@ -16,14 +16,24 @@ export default {
   components: {
     ArticleForm
   },
-  data: () => ({
-    initialValues: {
-      title: '',
-      description: '',
-      body: '',
-      tagList: []
-    },
-  }),
+  // data: () => ({
+  //   initialValues: {
+  //     title: '',
+  //     description: '',
+  //     body: '',
+  //     tagList: []
+  //   },
+  // }),
+  data() {
+    return {
+      initialValues: {
+        title: '',
+        description: '',
+        body: '',
+        tagList: []
+      }
+    }
+  },
   computed: {
     ...mapGetters('createArticle', ['isSubmitting', 'validationErrors', ]),
   },

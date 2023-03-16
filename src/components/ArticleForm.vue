@@ -58,12 +58,26 @@ export default {
       required: true
     },
   },
-  data: () => ({
-    title: '',
-    description: '',
-    body: '',
-    tagList: '',
-  }),
+  // data: () => ({
+  //   title: this.initialVal.title,
+  //   description: this.initialVal.description,
+  //   body: this.initialVal.body,
+  //   tagList: this.initialVal.tagList.join(' ')
+  //   // title: '',
+  //   // description: '',
+  //   // body: '',
+  //   // tagList: ''
+  //
+  // }),
+  data() {
+    return {
+      title: this.initialVal.title,
+      description: this.initialVal.description,
+      body: this.initialVal.body,
+      tagList: this.initialVal.tagList.join(' ')
+      //  Получаем массив, который преобразуем в строку
+    }
+  },
   methods: {
     onSubmit() {
       const form = {

@@ -11,7 +11,11 @@ const {
     LOGIN_FAILED,
     GET_USER_START,
     GET_USER_SUCCESS,
-    GET_USER_FAILED
+    GET_USER_FAILED,
+    UPDATE_USER_START,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAILED,
+    LOGOUT
 } = mutations;
 
 const authStore = {
@@ -70,6 +74,22 @@ const authStore = {
             state.isLoggedIn = false;
             state.currentUser = null;
         },
+        [UPDATE_USER_START](state) {
+            state.isSubmitting = true
+            state.validationErrors = null
+        },
+        [UPDATE_USER_SUCCESS](state, payload) {
+            state.currentUser = payload;
+            state.isSubmitting = false
+        },
+        [UPDATE_USER_FAILED](state, payload) {
+            state.isSubmitting = false
+            state.validationErrors = payload
+        },
+        [LOGOUT](state) {
+            state.currentUser = null
+            state.isLoggedIn = false
+        }
     },
     actions: {
         initUserToken: {
@@ -117,6 +137,25 @@ const authStore = {
                 })
             })
         },
+        updateCurrentUser({ commit }, { currentUserInput }) {
+            return new Promise((resolve) => {
+                commit(UPDATE_USER_START);
+                authApi.updateCurrentUser(currentUserInput)
+                    .then(response => {
+                        commit(UPDATE_USER_SUCCESS, response.data.user);
+                        resolve(response.data.user);
+                    }).catch(result => {
+                    commit(UPDATE_USER_FAILED, result.response.data.errors);
+                })
+            })
+        },
+        logoutUser({ commit }) {
+            return new Promise(resolve => {
+                setItem('accessToken', '')
+                commit(LOGOUT)
+                resolve()
+            })
+        }
     }
 }
 

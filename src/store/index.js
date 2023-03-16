@@ -4,6 +4,9 @@ import feed from './modules/feed'
 import popularTags from './modules/popularTags'
 import article from './modules/article'
 import createArticle from './modules/createArticle'
+import updateArticle from './modules/editArticle'
+import favorites from './modules/addToFavorites'
+import profile from './modules/userProfile'
 
 const store = createStore({
   state: {},
@@ -15,7 +18,10 @@ const store = createStore({
     feed,
     popularTags,
     article,
-    createArticle
+    createArticle,
+    updateArticle,
+    favorites,
+    profile
   }
 })
 
